@@ -1,4 +1,4 @@
-from tkinter import *
+from Tkinter import *
 
 def interface(agente):
     def entra():
@@ -8,15 +8,15 @@ def interface(agente):
         window.destroy()
 
     window = Tk()
-    window.title("Gerência de Redes")
+    window.title("Gerencia de Redes")
     window.geometry('200x120')
 
-    ip_label = Label(window, text="Endereço IP: ")
+    ip_label = Label(window, text="Endereco IP: ")
     ip_label.grid(column=0, row=0)
     ip_txt = Entry(window,width=10)
     ip_txt.grid(column=1, row=0)
 
-    usuario_label = Label(window, text="Usuário: ")
+    usuario_label = Label(window, text="Usuario: ")
     usuario_label.grid(column=0, row=2)
     usuario_txt = Entry(window,width=10)
     usuario_txt.grid(column=1, row=2)
