@@ -15,4 +15,4 @@ def plot_rate(rate_in, rate_out):
 
     plt.draw()
     plt.pause(0.001)
-    plt.clf
+    plt.clf()
