@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from interface import interface
+from plot import plot
 
 @dataclass
 class Agente:
@@ -11,7 +12,7 @@ class Agente:
 def main():
     agente = Agente()
     interface(agente)
-    print(agente)
+    plot()
 
 if __name__ == "__main__":
     main()
