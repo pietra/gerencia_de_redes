@@ -1,23 +1,32 @@
 from tkinter import *
- 
-window = Tk()
-window.title("Gerência de Redes")
-window.geometry('200x100')
 
-ip_label = Label(window, text="Endereço IP: ")
-ip_label.grid(column=0, row=0)
-ip = Entry(window,width=10)
-ip.grid(column=1, row=0)
+def interface(agente):
+    def entra():
+        agente.ip = ip_txt.get()
+        agente.usuario = usuario_txt.get()
+        agente.senha = senha_txt.get()
+        window.destroy()
 
-usuario_label = Label(window, text="Usuário: ")
-usuario_label.grid(column=0, row=2)
-usuario = Entry(window,width=10)
-usuario.grid(column=1, row=2)
+    window = Tk()
+    window.title("Gerência de Redes")
+    window.geometry('200x120')
 
-senha_label = Label(window, text="Senha: ")
-senha_label.grid(column=0, row=3)
-senha = Entry(window,width=10)
-senha.grid(column=1, row=3)
+    ip_label = Label(window, text="Endereço IP: ")
+    ip_label.grid(column=0, row=0)
+    ip_txt = Entry(window,width=10)
+    ip_txt.grid(column=1, row=0)
 
-window.mainloop()
- 
+    usuario_label = Label(window, text="Usuário: ")
+    usuario_label.grid(column=0, row=2)
+    usuario_txt = Entry(window,width=10)
+    usuario_txt.grid(column=1, row=2)
+
+    senha_label = Label(window, text="Senha: ")
+    senha_label.grid(column=0, row=3)
+    senha_txt = Entry(window,width=10)
+    senha_txt.grid(column=1, row=3)
+    
+    btn = Button(window, text="Entra", command=entra) 
+    btn.grid(column=1, row=4)
+
+    window.mainloop()
