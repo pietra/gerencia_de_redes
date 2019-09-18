@@ -16,6 +16,8 @@ class Agente:
         self.multicast = []
         self.unicast = []
         self.session = None
+        self.autenticacao = None
+        self.criptografia = None
 
 def main():
     agente = Agente()
