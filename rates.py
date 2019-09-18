@@ -10,6 +10,11 @@ in_total = 0
 out_total = 0
 last_time = time.time()
 
+m_in_total = 0
+m_out_total = 0
+u_in_total = 0
+u_out_total = 0
+
 def values_of_list(list):
     values = []
     for item in list:
@@ -51,6 +56,31 @@ def in_out_error_rates(agente):
     out_err = rate_out
     return int(err_rate_in), int(err_rate_out)
 
+def multicast_unicast_rates(agente):
+    global m_in_total
+    global m_out_total
+    global u_in_total
+    global u_out_total
+
+    m_in = to_float(get_snap_walk('ifInNUcastPkts', agente))
+    m_out = to_float(get_snap_walk('ifOutNUcastPkts', agente))
+    u_in = to_float(get_snap_walk('ifInUcastPkts', agente))
+    u_out = to_float(get_snap_walk('ifOutUcastPkts', agente))
+
+    delta_m_in = m_in - m_in_total
+    delta_m_out = m_out - m_out_total
+    delta_u_in = u_in - u_in_total
+    delta_u_out = u_out - u_out_total
+
+    m_in_total = m_in
+    m_out_total = m_out
+    u_in_total = u_in
+    u_out_total = u_out
+
+    m = delta_m_in + delta_m_out
+    u = delta_u_in + delta_u_out
+
+    return (m * 100) / (m + u), (u * 100) / (m + u)
 
 def in_out_rates(agente):
     global in_total
