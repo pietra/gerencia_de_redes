@@ -6,6 +6,8 @@ def interface(agente):
         agente.ip = ip_txt.get()
         agente.usuario = usuario_txt.get()
         agente.senha = senha_txt.get()
+        agente.criptografia = criptografia_txt.get()
+        agente.autenticacao = autenticacao_txt.get()
         agente.session = Session(hostname=agente.ip, community='public', version=3,
                 security_level='auth_with_privacy',
                 security_username=agente.usuario,
@@ -35,15 +37,15 @@ def interface(agente):
     senha_txt = Entry(window,width=10)
     senha_txt.grid(column=1, row=3)
 
-    senha_label = Label(window, text="Criptografia: ")
-    senha_label.grid(column=0, row=4)
-    senha_txt = Entry(window,width=10)
-    senha_txt.grid(column=1, row=4)
+    criptografia_label = Label(window, text="Criptografia: ")
+    criptografia_label.grid(column=0, row=4)
+    criptografia_txt = Entry(window,width=10)
+    criptografia_txt.grid(column=1, row=4)
 
-    senha_label = Label(window, text="Autenticacao: ")
-    senha_label.grid(column=0, row=5)
-    senha_txt = Entry(window,width=10)
-    senha_txt.grid(column=1, row=5)
+    autenticacao_label = Label(window, text="Autenticacao: ")
+    autenticacao_label.grid(column=0, row=5)
+    autenticacao_txt = Entry(window,width=10)
+    autenticacao_txt.grid(column=1, row=5)
 
     btn = Button(window, text="Entra", command=entra)
     btn.grid(column=1, row=6)
