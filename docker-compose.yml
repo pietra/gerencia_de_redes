@@ -1,7 +1,8 @@
 version: "3"
 services:
-  server:
-    build: server/
-    command: python main.py
+  web:
+    build: .
     ports:
-      - 1234:1234
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"

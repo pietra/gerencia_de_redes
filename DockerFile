@@ -1,6 +1,10 @@
 FROM python:2.7.15
 
-ADD main.py /server/
+ADD . /code
 
-WORKDIR /server/
+WORKDIR /code
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "main.py"]
 
