@@ -1,15 +1,13 @@
 import time
+import sys
+
 from easysnmp import Session, snmp_walk
 
 
 class Agente:
-    def __init__(self):
+    def __init__(self, ip):
         self.session = None
-
-        self.ip = ""
-        self.usuario = ""
-        self.senha = ""
-
+        self.ip = ip
         self.autenticacao = "SHA"
         self.criptografia = "AES"
 
@@ -18,17 +16,17 @@ MIB = 'ifInOctets'
 
 
 def main():
-    agente = Agente()
-    agente.session = Session(hostname=agente.ip, community='public', version=3,
-                             security_level='auth_with_privacy',
-                             security_username=agente.usuario,
-                             privacy_protocol=agente.criptografia,
-                             privacy_password=agente.senha,
-                             auth_protocol=agente.autenticacao,
-                             auth_password=agente.senha)
+    agente = Agente(sys.argv[1])
+    agente.session = Session(hostname=agente.ip, community='public', version=2,
+                            security_level='auth_with_privacy',
+                            privacy_protocol=agente.criptografia,
+                            auth_protocol=agente.autenticacao)
 
     while(True):
-        snmp_walk(MIB, hostname=agente.ip, community='public', version=3)
+        result = snmp_walk(MIB, hostname=agente.ip, community='public', version=3)
+        print("----------------")
+        print("MIB: ", result)
+        print("----------------")
         time.sleep(5)
 
 
