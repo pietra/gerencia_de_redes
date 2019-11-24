@@ -12,18 +12,15 @@ class Agente:
         self.criptografia = "AES"
 
 
-MIB = 'ifInOctets'
+MIB = 'sysUpTime'
 
 
 def main():
     agente = Agente(sys.argv[1])
-    agente.session = Session(hostname=agente.ip, community='public', version=2,
-                            security_level='auth_with_privacy',
-                            privacy_protocol=agente.criptografia,
-                            auth_protocol=agente.autenticacao)
+    agente.session = Session(hostname=agente.ip, community='public', version=2)
 
     while(True):
-        result = snmp_walk(MIB, hostname=agente.ip, community='public', version=3)
+        result = agente.session.walk(MIB)
         print("----------------")
         print("MIB: ", result)
         print("----------------")
