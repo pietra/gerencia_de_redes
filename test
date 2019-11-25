@@ -1,6 +1,0 @@
-#!/bin/bash
-echo "The following IPs are avaliable for consulting:"
-./get-ip
-echo "Type the desired IP..."
-read ipadress
-echo $ipadress
