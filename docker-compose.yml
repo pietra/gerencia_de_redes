@@ -1,8 +1,24 @@
-version: "3"
+version: "3.3"
+
 services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-  redis:
-    image: "redis:alpine"
+    snmpd:
+        image: polinux/snmpd
+        ports:
+        - "161:161/udp"
+        deploy:
+            replicas: 2
+            restart_policy:
+                condition: none
+
+    firefox:
+        image: jlesage/firefox
+        shm_size: '64m'
+        ports:
+        - "5800:5800"
+        volumes:
+        - "/docker/appdata/firefox:/config:rw"
+        deploy:
+            replicas: 2
+            restart_policy:
+                condition: none
+
